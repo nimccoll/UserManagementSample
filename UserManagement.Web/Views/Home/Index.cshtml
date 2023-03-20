@@ -1,0 +1,26 @@
+<!--
+//===============================================================================
+// Microsoft FastTrack for Azure
+// User Management Example
+//===============================================================================
+// Copyright © Microsoft Corporation.  All rights reserved.
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE.
+//===============================================================================
+-->
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<h2>What Can I Do?</h2>
+<hr />
+<div style="margin-top: 10px;"><a asp-action="InviteUser" class="btn btn-secondary">Invite User</a></div>
+<div style="margin-top: 10px;"><a asp-action="AssignUserToGroup" class="btn btn-secondary">Assign User To Group</a></div>
+<div style="margin-top: 10px;"><a asp-action="AssignLicenseToUser" class="btn btn-secondary">Assign a License to a User</a></div>

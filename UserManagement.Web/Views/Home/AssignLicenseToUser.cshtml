@@ -1,0 +1,72 @@
+﻿<!--
+//===============================================================================
+// Microsoft FastTrack for Azure
+// User Management Example
+//===============================================================================
+// Copyright © Microsoft Corporation.  All rights reserved.
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE.
+//===============================================================================
+-->
+@model IEnumerable<UserManagement.Web.Models.License.License>
+
+@{
+    ViewData["Title"] = "Assign License To User";
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert @ViewBag.Alert" role="alert">
+        @ViewBag.Message
+    </div>
+}
+<h4>Assign License to User</h4>
+<hr />
+<form asp-action="AssignLicenseToUser">
+    <div class="form-group">
+        <label class="control-label">Email Address</label>
+        <input type="email" id="txtEmailAddress" name="txtEmailAddress" class="form-control" />
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>
+                    SKU Part Number
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" value="@item.skuId" id="chkLicense" name="chkLicense" /></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.skuPartNumber)
+                        @if (item.servicePlans.Count > 0)
+                        {
+                            <div>
+                                <b>Service Plans</b>
+                                <ul>
+                                @foreach (UserManagement.Web.Models.License.ServicePlan servicePlan in item.servicePlans)
+                                {
+                                    <li>@servicePlan.servicePlanName</li>
+                                }
+                                </ul>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Cancel</a>
+</div>

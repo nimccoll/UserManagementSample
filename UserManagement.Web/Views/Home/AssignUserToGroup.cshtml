@@ -1,0 +1,59 @@
+﻿<!--
+//===============================================================================
+// Microsoft FastTrack for Azure
+// User Management Example
+//===============================================================================
+// Copyright © Microsoft Corporation.  All rights reserved.
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE.
+//===============================================================================
+-->
+@model IEnumerable<UserManagement.Web.Models.Group.Group>
+
+@{
+    ViewData["Title"] = "Assign User To Group";
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert @ViewBag.Alert" role="alert">
+        @ViewBag.Message
+    </div>
+}
+<h4>Assign User to Group</h4>
+<hr />
+<form asp-action="AssignUserToGroup">
+    <div class="form-group">
+        <label class="control-label">Email Address</label>
+        <input type="email" id="txtEmailAddress" name="txtEmailAddress" class="form-control" />
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>
+                Group Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td><input type="checkbox" value="@item.id" id="chkGroup" name="chkGroup" /></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.displayName)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Cancel</a>
+</div>

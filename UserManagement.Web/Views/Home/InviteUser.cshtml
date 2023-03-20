@@ -1,0 +1,69 @@
+﻿<!--
+//===============================================================================
+// Microsoft FastTrack for Azure
+// User Management Example
+//===============================================================================
+// Copyright © Microsoft Corporation.  All rights reserved.
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY
+// OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+// LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+// FITNESS FOR A PARTICULAR PURPOSE.
+//===============================================================================
+-->
+@model UserManagement.Web.Models.Invitation.InvitationRequest
+
+@{
+    ViewData["Title"] = "Invite User";
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert @ViewBag.Alert" role="alert">
+        @ViewBag.Message
+    </div>
+}
+<h4>Invite User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="InviteUser">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input asp-for="invitedUserDisplayName" class="form-control" />
+                <span asp-validation-for="invitedUserDisplayName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email Address</label>
+                <input asp-for="invitedUserEmailAddress" class="form-control" />
+                <span asp-validation-for="invitedUserEmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="sendInvitationMessage" /> Send Invitation Email?
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Custom email message</label>
+                <input asp-for="invitedUserMessageInfo.customizedMessageBody" class="form-control" />
+                <span asp-validation-for="invitedUserMessageInfo.customizedMessageBody" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Invite Redirect URL</label>
+                <input asp-for="inviteRedirectUrl" class="form-control" />
+                <span asp-validation-for="inviteRedirectUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top:10px">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Cancel</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
